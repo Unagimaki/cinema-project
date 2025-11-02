@@ -1,0 +1,18 @@
+# Node
+node_modules/
+
+# Build
+dist/
+coverage/
+.vite/
+
+# Env files
+.env
+.env.*
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/
