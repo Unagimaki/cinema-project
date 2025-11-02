@@ -6,10 +6,12 @@ import TicketsPage from '@/pages/tickets/TicketsPage.vue'
 import LoginPage from '@/pages/login/LoginPage.vue'
 import RegisterPage from '@/pages/register/RegisterPage.vue'
 import { useUserStore } from '@/entities/user/model/userStore'
+import MoviesSessionPage from '@/pages/moviesSession/MoviesSessionPage.vue'
 
 const routes = [
   { path: '/', name: 'home', component: HomePage },
-  { path: '/films', name: 'films', component: FilmsPage },
+  { path: '/movies', name: 'movies', component: FilmsPage },
+  { path: '/movies/:id', name: 'movies/:id', component: MoviesSessionPage },
   { path: '/cinemas', name: 'cinemas', component: CinemasPage },
   { path: '/tickets', name: 'tickets', component: TicketsPage, meta: { requiresAuth: true } },
   { path: '/login', name: 'login', component: LoginPage },

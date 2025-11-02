@@ -14,7 +14,7 @@ export function handleApiError(error: unknown): { message: string; status?: numb
 
   // примеры логики: разные тексты под разные коды
   if (status === 400) return { message: messageFromApi || 'Требуется имя пользователя и пароль', status }
-  if (status === 401) return { message: 'Неверный логин или пароль', status }
+  if (status === 401) return { message: 'Неверный логин или пароль. Проверьте введенные данные и попробуйте снова', status }
 
   return { message: messageFromApi || defaultMessage, status }
 }

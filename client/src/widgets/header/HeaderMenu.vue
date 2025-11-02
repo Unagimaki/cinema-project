@@ -2,7 +2,7 @@
   <header class="header">
     <nav class="nav">
       <RouterLink to="/">Главная</RouterLink>
-      <RouterLink to="/films">Фильмы</RouterLink>
+      <RouterLink to="/movies">Фильмы</RouterLink>
       <RouterLink to="/cinemas">Кинотеатры</RouterLink>
       <RouterLink to="/tickets">Мои билеты</RouterLink>
       <RouterLink v-if="!isAuth" to="/login">Вход</RouterLink>
@@ -18,11 +18,15 @@ import { computed } from 'vue'
 import { useUserStore } from '@/entities/user/model/userStore'
 
 const router = useRouter()
+const store = useUserStore()
 const auth = useUserStore()
 const isAuth = computed(() => auth.isAuthenticated)
 
 function logout() {
   auth.logoutUser()
+  if (!store.isAuthenticated) {
+    router.push('/movies')
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { LoginPayload } from '@/features/auth/types'
 import { login, register } from '@/features/auth/api/auth'
-import { RegisterPayload } from '../types'
+import { RegisterPayload } from './types'
 import { handleApiError } from '@/shared/api/handleApiError'
 
 export const useUserStore = defineStore('user', {
