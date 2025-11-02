@@ -6,7 +6,7 @@
       <RouterLink to="/cinemas">Кинотеатры</RouterLink>
       <RouterLink to="/tickets">Мои билеты</RouterLink>
       <RouterLink v-if="!isAuth" to="/login">Вход</RouterLink>
-      <button v-if="isAuth" @click="logout">Выход</button>
+      <button class="logout_button" v-if="isAuth" @click="logout">Выход</button>
     </nav>
   </header>
 </template>
@@ -14,16 +14,15 @@
 <script setup lang="ts">
 
 import { RouterLink, useRouter } from 'vue-router'
-import { useAuthStore } from '@/features/auth/model/store'
 import { computed } from 'vue'
+import { useUserStore } from '@/entities/user/model/userStore'
 
 const router = useRouter()
-const auth = useAuthStore()
+const auth = useUserStore()
 const isAuth = computed(() => auth.isAuthenticated)
 
 function logout() {
-  auth.logout()
-  router.push('/')
+  auth.logoutUser()
 }
 </script>
 
@@ -37,6 +36,9 @@ function logout() {
     display: flex;
     gap: 16px;
     align-items: center;
+  }
+  .logout_button {
+    color: #000 !important; 
   }
   .nav * {
     color: #fff;

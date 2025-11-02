@@ -5,7 +5,7 @@ import CinemasPage from '@/pages/cinemas/CinemasPage.vue'
 import TicketsPage from '@/pages/tickets/TicketsPage.vue'
 import LoginPage from '@/pages/login/LoginPage.vue'
 import RegisterPage from '@/pages/register/RegisterPage.vue'
-import { useAuthStore } from '@/features/auth/model/store'
+import { useUserStore } from '@/entities/user/model/userStore'
 
 const routes = [
   { path: '/', name: 'home', component: HomePage },
@@ -22,7 +22,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to) => {
-  const auth = useAuthStore()
+  const auth = useUserStore()
 
   if (to.meta.requiresAuth && !auth.isAuthenticated) {
     return { name: 'login' }
