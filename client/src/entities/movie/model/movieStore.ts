@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { Movie, MovieSession } from "./types";
-import { getMovies, getMoviesSessions } from "./api";
+import { getCurrentMovieSessions, getMovies } from "./api";
 import { handleApiError } from "@/shared/api/handleApiError";
 
 export const useMovieStore = defineStore("MoviesStore", {
@@ -27,20 +27,18 @@ export const useMovieStore = defineStore("MoviesStore", {
         },
 
         async fetchMoviesSessionById(id: number) {
-            this.loading = true;
-            this.error = '';
-            try {
-                this.sessions = await getMoviesSessions(id)
+            try {               
                 this.selectedMovie = this.movies.find(movie => movie.id === id) || null
-                console.log(this.sessions);
-                
+                this.sessions = await getCurrentMovieSessions(id)
+                console.log(`Сеансы фильма ${id}:`, this.sessions)
             } catch (error) {
-                const {message} = handleApiError(error);
-                this.error = message;
+                const { message } = handleApiError(error)
+                this.error = message
             } finally {
-                this.loading = false;
+                this.loading = false
             }
         }
+
 
     }
 })

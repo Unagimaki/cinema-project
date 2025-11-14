@@ -2,12 +2,13 @@
 import { useRouter } from 'vue-router';
 import type { Movie } from '../model/types'
 import { BASE_URL } from '@/shared/config/env';
+import { APP_ROUTES } from '@/shared/config/routes';
 
 const router = useRouter()
 const props = defineProps<{ movie: Movie }>()
 
 function goToSessions() {
-  router.push(`/movies/${props.movie.id}`)
+  router.push(`${APP_ROUTES.MOVIES}/${props.movie.id}`)
 }
 </script>
 

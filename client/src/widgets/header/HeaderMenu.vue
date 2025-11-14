@@ -1,16 +1,3 @@
-<template>
-  <header class="header">
-    <nav class="nav">
-      <RouterLink to="/">Главная</RouterLink>
-      <RouterLink to="/movies">Фильмы</RouterLink>
-      <RouterLink to="/cinemas">Кинотеатры</RouterLink>
-      <RouterLink to="/tickets">Мои билеты</RouterLink>
-      <RouterLink v-if="!isAuth" to="/login">Вход</RouterLink>
-      <button class="logout_button" v-if="isAuth" @click="logout">Выход</button>
-    </nav>
-  </header>
-</template>
-
 <script setup lang="ts">
 
 import { RouterLink, useRouter } from 'vue-router'
@@ -21,14 +8,28 @@ const router = useRouter()
 const store = useUserStore()
 const auth = useUserStore()
 const isAuth = computed(() => auth.isAuthenticated)
+import { APP_ROUTES } from '@/shared/config/routes'
 
 function logout() {
   auth.logoutUser()
   if (!store.isAuthenticated) {
-    router.push('/movies')
+    router.push(APP_ROUTES.MOVIES)
   }
 }
 </script>
+
+<template>
+  <header class="header">
+    <nav class="nav">
+      <RouterLink :to=APP_ROUTES.HOME>Главная</RouterLink>
+      <RouterLink :to=APP_ROUTES.MOVIES>Фильмы</RouterLink>
+      <RouterLink :to=APP_ROUTES.CINEMAS>Кинотеатры</RouterLink>
+      <RouterLink :to=APP_ROUTES.BOOKINGS>Мои билеты</RouterLink>
+      <RouterLink v-if="!isAuth" :to=APP_ROUTES.LOGIN>Вход</RouterLink>
+      <button class="logout_button" v-if="isAuth" @click="logout">Выход</button>
+    </nav>
+  </header>
+</template>
 
 <style scoped>
   .header {

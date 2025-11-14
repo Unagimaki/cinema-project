@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useUserStore } from '@/entities/user/model/userStore'
 import { useRouter } from 'vue-router'
+import { APP_ROUTES } from '@/shared/config/routes'
 
 const store = useUserStore()
 const username = ref('')
@@ -14,7 +15,7 @@ async function onSubmit() {
     password: password.value,
   })
   if (store.isAuthenticated) {
-    router.push('/tickets')
+    router.push(APP_ROUTES.BOOKINGS)
   }
 }
 </script>
@@ -31,7 +32,7 @@ async function onSubmit() {
 
     <p class="text-sm mt-2">
       Нет аккаунта?
-      <RouterLink to="/register" class="text-blue-500 hover:underline">
+      <RouterLink :to=APP_ROUTES.REGISTER class="text-blue-500 hover:underline">
         Зарегистрируйтесь
       </RouterLink>
     </p>

@@ -1,9 +1,5 @@
 import type { AxiosError } from 'axios'
 
-/**
- * Унифицированный парсер ошибок API.
- * Возвращает { message, status } — для отображения в UI и логики в коде.
- */
 export function handleApiError(error: unknown): { message: string; status?: number } {
   const defaultMessage = 'Произошла ошибка. Попробуйте позже.'
   if (!error || typeof error !== 'object') return { message: defaultMessage }

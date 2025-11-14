@@ -35,7 +35,6 @@ export const useUserStore = defineStore('user', {
       this.error = ''
       try {
         const { token } = await register(payload)
-
         this.token = token
         this.isAuthenticated = true
         localStorage.setItem('token', token)

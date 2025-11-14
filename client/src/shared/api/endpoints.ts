@@ -7,12 +7,13 @@ export const API_ENDPOINTS = {
 
   MOVIES: {
     ROOT: '/movies',
-    SESSIONS_BY_ID: (movieId: number) => `/movies/${movieId}/sessions`,
+    THIS_MOVIE_SESSIONS_BY_ID: (movieId: number) => `/movies/${movieId}/sessions`,
   },
 
   MOVIES_SESSIONS: {
     ROOT: '/movieSessions',
     MOVIE_SESSION_BY_MOVIE_SESSION_ID: (movieSessionsId: number) => `/movieSessions/${movieSessionsId}`,
+    BOOKING_MOVIE_SESSION_BY_MOVIE_SESSION_ID: (movieSessionsId: number) => `/movieSessions/${movieSessionsId}/bookings`,
   },
 
   CINEMAS: {
@@ -26,7 +27,11 @@ export const API_ENDPOINTS = {
 
   BOOKINGS: {
     ROOT: '/bookings',
-    PAY: (bookingId: number) => `/bookings/${bookingId}/payments`,
+    PAY_BOOKING: (bookingId: string) => `/bookings/${bookingId}/payments`,
+  },
+  USERS: {
+    ROOT: '/me',
+    GET_USERS_BOOKINGS: '/me/bookings',
   },
 
   SETTINGS: '/settings',
